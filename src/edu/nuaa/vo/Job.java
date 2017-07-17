@@ -35,6 +35,12 @@ public class Job {
 	 * **/
 	private double jobMaxSal;
 	private double jobMinSal;
+	
+	
+	private int jobComId;
+	
+	
+	
 	public int getJobId() {
 		return jobId;
 	}
@@ -100,6 +106,12 @@ public class Job {
 	}
 	public void setJobMinSal(double jobMinSal) {
 		this.jobMinSal = jobMinSal;
+	}
+	public int getJobComId() {
+		return jobComId;
+	}
+	public void setJobComId(int jobComId) {
+		this.jobComId = jobComId;
 	}
 	
 	

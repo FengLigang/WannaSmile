@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Announce {
 	
+	private int annId;
 	private String annTitle;
 	private String annContent;
 	private Date   annTime;
@@ -26,6 +27,12 @@ public class Announce {
 	}
 	public void setAnnTime(Date annTime) {
 		this.annTime = annTime;
+	}
+	public int getAnnId() {
+		return annId;
+	}
+	public void setAnnId(int annId) {
+		this.annId = annId;
 	}
 	
 	
