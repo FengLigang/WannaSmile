@@ -9,7 +9,7 @@ public class Company {
 	private String comPerson;
 	private String comEmail;
 	/**
-	 *  jid_jid_jid
+	 *  jobId_jobId_jobId
 	 * **/
 	private String comJob;
 	public int getComId() {
