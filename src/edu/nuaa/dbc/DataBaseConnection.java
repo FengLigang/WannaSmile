@@ -8,7 +8,7 @@ public class DataBaseConnection {
 	// 定义了MySQL数据库的驱动程序
 	public static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
 	// 定义了MySQL数据库的连接地址
-	public static final String DBURL = "jdbc:mysql://localhost:3306/nuaa";
+	public static final String DBURL = "jdbc:mysql://localhost:3306/zhaopin";
 	// 用户名
 	public static final String DBUSER = "root";
 	// 密码
