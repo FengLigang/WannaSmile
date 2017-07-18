@@ -1,7 +1,9 @@
 package edu.nuaa.vo;
+import edu.nuaa.vo.Student;
+
 
 public class Student {
-
+  
 	private int stuId;
 	private int stuAge;
 	private int stuTel;
