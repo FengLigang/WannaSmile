@@ -9,11 +9,14 @@ import edu.nuaa.vo.Student;
 public class StuDaoImpl implements IStuDao{
 	private Connection conn = null;
 	private PreparedStatement ps = null;
+	public StuDaoImpl(Connection conn) {
+		this.conn = conn;
+	}
 	@Override
 	public boolean doCreate(Student stu) throws Exception {
 		// TODO Auto-generated method stub
 		boolean flag = false;
-		String sql = "insert into stu (STU_ID,STU_Age,STU_Tel,STU_Resumeld,STU_Psw,STU_Name,STU_Edu,STU_Sex,STU_Email,STU_Introduce,STU_Experience,STU_Focus,STU_Recommend,STU_Skill,STU_SkillLab) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into stu (stuId,stuAge,stuTel,stuResumeId,stuPsw,stuName,stuEdu,stuSex,stuEmail,stuIntroduce,stuExperience,stuFocus,stuRecommend,stuSkill,stuSkillLab) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		this.ps = this.conn.prepareStatement(sql);
 		this.ps.setInt(1, stu.getStuId());
 		this.ps.setInt(2, stu.getStuAge());
@@ -42,229 +45,68 @@ public class StuDaoImpl implements IStuDao{
 	}
 
 	@Override
-	public boolean doDeleteById(int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean doDelete(Student stu) throws Exception{
+		int STU_ID = stu.getStuId();
 		boolean flag = false;
-		String sql = "delete from stu where STU_ID=?";
-		this.ps.setInt(1, STU_ID);
+		String sql = "delete from stu where stuId=STU_ID";
 		this.ps = this.conn.prepareStatement(sql);
-		if(ps.executeUpdate() > 0){
+		if (this.ps.executeUpdate() > 0) {
 			flag = true;
 		}
 		this.ps.close();
-		return false;
+		return flag;
 	}
 
-//	@Override
-//	public boolean doChange(Student stu) throws Exception {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-	
+
 	@Override
-	public boolean doChangeID(int STU_ID,String STU_Name) throws Exception {
+	public boolean doChange(Student stu) throws Exception {
 		// TODO Auto-generated method stub
-		boolean flag = true;
-		String sql = "update stu set STU_ID = '"+ STU_ID +"' where STU_Name = '"+ STU_Name +"'";
-		this.ps = this.conn.prepareStatement(sql);
+		boolean flag = false;
+		int changestuId = stu.getStuId();
+		int changestuAge = stu.getStuAge();
+		int changestuTel = stu.getStuTel();
+		int changestuResumeId = stu.getStuResumeId();
+		String changestuPsw = stu.getStuPsw();
+		String changestuName = stu.getStuName();
+		String changestuEdu = stu.getStuEdu();
+		String changestuSex = stu.getStuSex();
+		String changestuEmail = stu.getStuEmail();
+		String changestuIntroduce = stu.getStuIntroduce();
+		String changestuExperience = stu.getStuExperience();
+		String changestuFocus = stu.getStuFocus();
+		String changestuRecommend = stu.getStuRecommend();
+		String changestuSkill = stu.getStuSkill();
+		String changestuSkillLab = stu.getStuSkillLab();
 		
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-
-
-	@Override
-	public boolean doChangeAge(int STU_Age,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		boolean flag = true;
-		String sql = "update stu set STU_Age = '"+ STU_Age +"' where STU_ID = '"+ STU_ID +"'";
+		String sql = "update stu set stuId = ?,stuAge = ?,stuTel = ?,stuResumeId = ?,stuPsw = ?,stuName = ?,stuEdu = ?,stuSex = ?,stuEmail = ?,stuIntroduce = ?,stuExperience = ?,stuFocus = ?,stuRecommend = ?,stuSkill =　?,stuSkillLab = ?";
 		this.ps = this.conn.prepareStatement(sql);
-		
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeTel(int STU_Tel,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		boolean flag = false;
-		String sql = "update stu set STU_Tel = '"+ STU_Tel +"' where STU_ID='" + STU_ID + "'";
+		this.ps.setInt(1, changestuId);
+		this.ps.setInt(2, changestuAge);
+		this.ps.setInt(3, changestuTel);
+		this.ps.setInt(4, changestuResumeId);
+		this.ps.setString(5, changestuPsw);
+		this.ps.setString(6, changestuName);
+		this.ps.setString(7, changestuEdu);
+		this.ps.setString(8, changestuSex);
+		this.ps.setString(9, changestuEmail);
+		this.ps.setString(10, changestuIntroduce);
+		this.ps.setString(11, changestuExperience);
+		this.ps.setString(12, changestuFocus);
+		this.ps.setString(13, changestuRecommend);
+		this.ps.setString(14, changestuSkill);
+		this.ps.setString(15, changestuSkillLab);
 		this.ps = this.conn.prepareStatement(sql);
 		if(this.ps.executeUpdate() > 0){
 			flag = true;
 		}
 		this.ps.close();
-		return false;
+		return flag;
 	}
-
-	@Override
-	public boolean doChangeResumeId(int STU_ResumeId,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		boolean flag = false;
-		String sql = "update stu set STU_ResumeId = '"+ STU_ResumeId +"' where STU_ID='" + STU_ID + "'";
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangePsw(String STU_Psw,int STU_ID) throws Exception {
-		String sql = "update stu set STU_Psw = '"+ STU_Psw +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeName(String STU_Name,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Name = '"+ STU_Name +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeEdu(String STU_Edu,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Edu = '"+ STU_Edu +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeSex(String STU_Sex,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Sex = '"+ STU_Sex +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeEmail(String STU_Email,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Email = '"+ STU_Email +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeItroduce(String STU_Introduce,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Introduce = '"+ STU_Introduce +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeExperience(String STU_Experience,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Experience = '"+ STU_Experience +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeFocus(String STU_Focus,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Focus = '"+ STU_Focus +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeRecommend(String STU_Recommend,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Recommend = '"+ STU_Recommend +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeSkill(String STU_Skill,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_Skill = '"+ STU_Skill +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-
-	@Override
-	public boolean doChangeSkillLab(String STU_SkillLab,int STU_ID) throws Exception {
-		// TODO Auto-generated method stub
-		String sql = "update stu set STU_SkillLab = '"+ STU_SkillLab +"' where STU_ID='" + STU_ID + "'";
-		boolean flag = false;
-		this.ps = this.conn.prepareStatement(sql);
-		if(this.ps.executeUpdate() > 0){
-			flag = true;
-		}
-		this.ps.close();
-		return false;
-	}
-	
-	
 	
 	@Override
 	public Student doFindById(int STU_ID) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "select STU_ID,STU_Age,STU_Tel,STU_Resumeld,STU_Psw,STU_Name,STU_Edu,STU_Sex,STU_Email,STU_Introduce,STU_Experience,STU_Focus,STU_Recommend,STU_Skill,STU_SkillLab from stu where STU_ID = ?";
+		String sql = "select stuId,stuAge,stuTel,stuResumeId,stuPsw,stuName,stuEdu,stuSex,stuEmail,stuIntroduce,stuExperience,stuFocus,stuRecommend,stuSkill,stuSkillLab from stu where STU_ID = ?";
 		this.ps=this.conn.prepareStatement(sql);
 		this.ps.setInt(1, STU_ID);
 		Student stu = null;
@@ -291,6 +133,7 @@ public class StuDaoImpl implements IStuDao{
 		this.ps.close();
 		return stu;
 	}
+
 
 
 }
