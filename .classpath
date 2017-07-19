@@ -19,14 +19,6 @@
 			<attribute name="owner.project.facets" value="jst.web.jstl"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/mysql-connector-java-5.1.18-bin.jar"/>
-=======
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="F:/暑期实训/mysql-connector-java-5.1.18-bin.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/wch/Desktop/mysql-connector-java-5.1.18-bin.jar"/>
->>>>>>> 14d57cd7114bac839e2f4d59f5834af2f9145f8d
->>>>>>> c207b42b215fd83ce768ad8017920bb507d84165
+
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
