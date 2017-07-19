@@ -50,5 +50,12 @@ public interface IResumeDao {
 	 * */
 	public Resume findById(int stuId) throws Exception;
 	
+	/**
+	 * 设置技能标签
+	 * @param resId
+	 * @return boolean
+	 * @throws Exception
+	 * */
+	public boolean setSkillLab(Resume resume) throws Exception;
 	
 }

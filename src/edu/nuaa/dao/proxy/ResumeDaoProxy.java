@@ -88,5 +88,10 @@ public class ResumeDaoProxy implements IResumeDao{
 		}
 		return resume;
 	}
+	@Override
+	public boolean setSkillLab(Resume resume) throws Exception {
+		
+		return false;
+	}
 
 }

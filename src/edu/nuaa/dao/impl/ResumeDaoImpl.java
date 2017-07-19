@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nuaa.dao.IResumeDao;
+import edu.nuaa.factory.SkiDaoFactory;
 import edu.nuaa.vo.Resume;
+import edu.nuaa.vo.SkillTable;
 
 public class ResumeDaoImpl implements IResumeDao{
 	
@@ -21,7 +23,7 @@ public class ResumeDaoImpl implements IResumeDao{
 	@Override
 	public boolean doCreate(Resume resume) throws Exception {
 		boolean flag = false;
-		String sql = "insert into res (resId,stuId,stuAge,stuName,stuSex,stuEdu,stuIntroduce,stuExperience,stuPrize,stuSkill,stuSkillLab) values (?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into res (resId,stuId,stuAge,stuName,stuSex,stuEdu,stuIntroduce,stuExperience,stuPrize,stuSkill) values (?,?,?,?,?,?,?,?,?,?)";
 		this.ps = this.conn.prepareStatement(sql);//实例化
 		this.ps.setInt(1, resume.getResId());
 		this.ps.setInt(2, resume.getStuId());
@@ -33,7 +35,7 @@ public class ResumeDaoImpl implements IResumeDao{
 		this.ps.setString(8, resume.getStuExperience());
 		this.ps.setString(9, resume.getStuPrize());
 		this.ps.setString(10, resume.getStuSkill());
-		this.ps.setString(11, resume.getStuSkillLab());
+		//this.ps.setString(11, resume.getStuSkillLab());
 		if(this.ps.executeUpdate() > 0){
 			flag = true;
 		}
@@ -143,6 +145,20 @@ public class ResumeDaoImpl implements IResumeDao{
 		rs.close();
 		this.ps.close();
 		return resume;
+	}
+
+	@Override
+	public boolean setSkillLab(Resume resume) throws Exception {
+		boolean flag = false;
+		String skill = resume.getStuSkill();//学生个人简历中的技能
+		int count =10;//SkillTable 的标签个数
+//		SkillTable skitable = new SkillTable();
+		for(int i=0;i< count;i++){
+			if(skill.indexOf(SkiDaoFactory.getISkiDaoInstance().doFindById(i).getSkiName()) > 0){
+				
+			}
+		}
+		return flag;
 	}
 	
 }
