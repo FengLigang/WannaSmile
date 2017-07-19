@@ -1,11 +1,13 @@
 package edu.nuaa.dao.proxy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.nuaa.dao.IComDao;
 import edu.nuaa.dao.impl.ComDaoImpl;
 import edu.nuaa.dbc.DataBaseConnection;
 import edu.nuaa.vo.Company;
+import edu.nuaa.vo.Job;
 
 
 
@@ -94,6 +96,54 @@ public class ComDaoProxy implements IComDao{
 			this.dbc.close();
 		}
 		return flag;
+	}
+
+	@Override
+	public boolean doAddJob(int comId, Job job) throws Exception {
+		boolean flag = false;
+		try {
+			if (this.dao.findById(comId) != null) {
+				flag = this.dao.doAddJob(comId, job);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			this.dbc.close();
+		}
+		return flag;
+	}
+
+	@Override
+	public List<Integer> doFindJob(int comId) throws Exception {
+		List<Integer> all = new ArrayList<Integer>();
+		try {
+			if (this.dao.findById(comId) != null) {
+				System.out.println("进行到这里了");
+				all = this.dao.doFindJob(comId);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			this.dbc.close();
+		}
+		return all;
+	}
+
+	@Override
+	public boolean doDeleteJob(int comId, int jobId) throws Exception {
+		boolean flag = false;
+		try {
+			if (this.dao.findById(comId) != null) {
+				flag = this.dao.doDeleteJob(comId,jobId);
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			this.dbc.close();
+		}
+		return flag;
+		
 	}
 
 	

@@ -8,6 +8,7 @@ import java.util.List;
 
 import edu.nuaa.dao.IComDao;
 import edu.nuaa.vo.Company;
+import edu.nuaa.vo.Job;
 
 
 
@@ -178,16 +179,67 @@ public class ComDaoImpl implements IComDao {
 	}
 
 	
-	//public boolean doAddJob(int comId, String comJob) throws Exception {
-		//boolean flag = false;
-		// com = new Company();
-		//com = findById(comId);
-		
-		
-		//return flag;
-	//}
+	public boolean doAddJob(int comId, Job job) throws Exception {
+		 boolean flag = false;
+		 Company com = new Company();
+		 com = this.findById(comId);
+		 String newcomJob = com.getComJob()+"_"+job.getJobId();
+		 com.setComJob(newcomJob);
+		 flag = this.doComUpdate(com);
+		 return flag;
+	}
 
+	@Override
+	public List<Integer> doFindJob(int comId) throws Exception {
+		List<Integer> all = new ArrayList<Integer>();
+		String[] allJob = new String[100];
+		Company com = new Company();
+		com = this.findById(comId);
+		String jobString = com.getComJob();
+		allJob = jobString.split("_");
+		for(int i=0;i<allJob.length;i++)
+		{
+			all.add(Integer.parseInt(allJob[i]));	
+		}	
+		
+		return all;	
+	}
 
-	
+	@Override
+	public boolean doDeleteJob(int comId, int jobId) throws Exception {
+		boolean flag = false;
+		String[] allJob = new String[20];//每个公司最多发布20个岗位
+		Company com = new Company();
+		com = this.findById(comId);
+		String jobString = com.getComJob();
+		String newString = "";
+		allJob = jobString.split("_");
+		int length = allJob.length;//无奈之举
+		for(int i=0;i<length;i++)
+		{
+			if(Integer.parseInt(allJob[i]) == jobId)
+			{
+				length--;
+				
+				for(int j=i;j<length;j++)
+				{
+					allJob[j]=allJob[j+1];
+					
+				}
+			}
+		}
+		for(int k = 0;k<length; k++)
+		{
+			if(k==0)
+			newString = newString + allJob[k];//第一个job前面不用加_
+			else
+			newString = newString +"_"+ allJob[k];
+			
+		}
+		com.setComJob(newString);
+		flag = this.doComUpdate(com);
+		
+		return flag;
+	}
 
 }

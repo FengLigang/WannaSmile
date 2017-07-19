@@ -89,9 +89,41 @@ public class ResumeDaoProxy implements IResumeDao{
 		return resume;
 	}
 	@Override
+	//注意：此代理未使用
 	public boolean setSkillLab(Resume resume) throws Exception {
-		
-		return false;
+		boolean flag =false;
+		try{
+			flag = this.dao.setSkillLab(resume);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			this.dbc.close();
+		}
+		return flag;
+	}
+	@Override
+	public boolean syncSkillLab(Resume resume) throws Exception {
+		boolean flag =false;
+		try{
+			flag = this.dao.syncSkillLab(resume);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			this.dbc.close();
+		}
+		return flag;
+	}
+	@Override
+	public List<Integer> findSuitJob(Resume resume, int MaxSal,int MinSal,String Type) throws Exception {
+		List<Integer> all = null;
+		try{
+			all = this.dao.findSuitJob(resume, MaxSal,MinSal, Type);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			this.dbc.close();
+		}
+		return all;
 	}
 
 }

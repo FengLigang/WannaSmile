@@ -3,8 +3,7 @@ package edu.nuaa.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import edu.nuaa.dao.JobDao;
 import edu.nuaa.vo.Job;

@@ -71,6 +71,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </head>
   
   <body>
+<<<<<<< HEAD
+    <form action="com_doAddJob.jsp" method="post"  >
+    <h2>公司编号：</h2><input type="text" name="comId">  <br>
+    <h2>请输入你要删除的职位：</h2><input type="text" name="jobId">  <br>
+    <input type="submit" value="提交信息">
+    </form> <br>
+=======
     <!--start-header-->
 	<div class="header" id="home">
 		<div class="container">
@@ -605,5 +612,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--End-footer-->			
+>>>>>>> be6cadb54ea93f88b17d0d9e1c2dc345d2a669f1
   </body>
 </html>
