@@ -12,7 +12,7 @@ public class DataBaseConnection {
 	// 用户名
 	public static final String DBUSER = "root";
 	// 密码
-	public static final String DBPASS = "123456";
+	public static final String DBPASS = "admin";
 		
 	private Connection conn = null;
 //	在构造方法里面进行了数据库连接
