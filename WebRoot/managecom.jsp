@@ -85,64 +85,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--end-header-->
-	<!--start-about-->
-	<div class="about">
+	
+	<!--start-design-->	
+	<div class="design">
 		<div class="container">
-			<div class="about-main">
-				<h3>公司信息管理</h3>
-				<h5></h5>
-				<p></p>
-				<div class="about-text">
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-1.jpg" href="#" alt="">
-						<h5><a href="#">查看公司信息</a></h5>
-						<p></p>
+		<h1 style="text-align: center;">信息管理</h1>
+			<div class="design-main">
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-2.png" alt="" />
+						<h3>信息查看</h3>
+						<p>这里是信息查看</p>
 					</div>
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-2.jpg" href="#" alt="">
-						<h5><a href="#">修改公司信息</a></h5>
-						<p></p>
-					</div>
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-3.jpg" href="#" alt="">
-						<h5><a href="#">功能未定</a></h5>
-						<p></p>
-					</div>
-					<div class="clearfix"> </div>
 				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-2.png" alt="" />
+						<h3>信息修改</h3>
+						<p>这里是信息修改</p>
+					</div>
+				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-3.png" alt="" />
+						<h3>最近访问</h3>
+						<p>这里是最近访问</p>
+					</div>
+				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-4.png" alt="" />
+						<h3>注销用户</h3>
+						<h3>退出登录</h3>
+						<!-- 注销用户与退出登录均使用alert弹出窗口进行提示，如果可以则进行相应操作
+							注销用户调用delete函数，退出登录删除session信息，之后跳转到主页
+						 -->
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
-	<!--end-about-->
-	<!--start-about-->
-	<div class="about">
-		<div class="container">
-			<div class="about-main">
-				<h3>工作区域</h3>
-				<h5></h5>
-				<p></p>
-				<div class="about-text">
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-1.jpg" href="#" alt="">
-						<h5><a href="#">创建修改工作</a></h5>
-						<p></p>
+	<!--End-design-->
+
+	<!--start-design-->	
+	<div class="design" >
+		<div class="container" >
+		<h1 style="text-align: center;">工作发布</h1>
+			<div class="design-main" >
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-2.png" alt="" />
+						<h3>职位发布</h3>
+						<p>这里是职位发布</p>
 					</div>
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-2.jpg" href="#" alt="">
-						<h5><a href="#">查看推荐人才</a></h5>
-						<p></p>
-					</div>
-					<div class="col-md-4 about-text-left">
-						<img src="images/abt-3.jpg" href="#" alt="">
-						<h5><a href="#">搜索适宜人才</a></h5>
-						<p></p>
-					</div>
-					<div class="clearfix"> </div>
 				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-2.png" alt="" />
+						<h3>人才查询</h3>
+						<p>这里是人才查询</p>
+					</div>
+				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-3.png" alt="" />
+						<h3>人才推荐</h3>
+						<p>这里是人才推荐</p>
+					</div>
+				</div>
+				<div class="col-md-3 design-left">
+					<div class="design-text">
+						<img src="images/design-4.png" alt="" />
+						<h3>删除职位</h3>
+						<p>这里是删除职位</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
-	<!--end-about-->
+	<!--End-design-->
 	<!--start-team-->
 	<div class="team">
 		<div class="container">

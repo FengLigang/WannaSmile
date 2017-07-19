@@ -52,10 +52,26 @@ public interface IResumeDao {
 	
 	/**
 	 * 设置技能标签
-	 * @param resId
+	 * @param Resume对象
 	 * @return boolean
 	 * @throws Exception
 	 * */
 	public boolean setSkillLab(Resume resume) throws Exception;
 	
+	
+	/**
+	 * 学生个人信息的skill里的关键字同步到resume中的skilllab
+	 * @param resume 填写完个人信息时，前端询问是否同步到简历中的skillLab中
+	 * @return boolean
+	 * @throws
+	 * */
+	public boolean syncSkillLab(Resume resume) throws Exception;
+	
+	/**
+	 * 查找适合工作
+	 * @param 根据薪资等一系列要求，查找适合自己的工作
+	 * @return 
+	 * @throws Exception
+	 * */
+	public List<Integer> findSuitJob(Resume resume, int MaxSal,int MinSal,String Type) throws Exception;
 }

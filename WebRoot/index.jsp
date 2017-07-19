@@ -71,6 +71,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </head>
   
   <body>
+<<<<<<< HEAD
+=======
     <!--start-header-->
 	<div class="header" id="home">
 		<div class="container">
@@ -86,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="index.jsp"  class="active">主页</a></li>
 					<li><a href="about.jsp">校内公告</a></li>
 					<li><a href="404.jsp">工作招聘</a></li>
-					<li><a href="contact.jsp">游客</a></li>
+					<li><a href="contact.jsp">管理界面</a></li>
 				</ul>
 					<a href="#" id="pull"><img src="images/menu-icon.png" title="menu" /></a>
 			</nav>
@@ -605,5 +607,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--End-footer-->			
+>>>>>>> be6cadb54ea93f88b17d0d9e1c2dc345d2a669f1
   </body>
 </html>

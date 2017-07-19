@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
 					</div>
 					<div class="get-btm-top">
-						<h4>此处为公司大楼及其照片</h4>
+						<h4>此处为公司大楼照片以及关注公司按钮</h4>
 						<div class="get-btm-one">
 							<div class="get-lock">
 								<img src="images/lock.png" alt="" />
