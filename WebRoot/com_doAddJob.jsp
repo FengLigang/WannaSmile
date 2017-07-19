@@ -1,3 +1,8 @@
+<%@page import="edu.nuaa.factory.ComDaoFactory"%>
+<%@page import="edu.nuaa.dao.proxy.ComDaoProxy"%>
+<%@page import="edu.nuaa.dao.impl.ComDaoImpl"%>
+<%@page import="edu.nuaa.vo.Company" %>
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -9,7 +14,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>My JSP 'com_doAddJob.jsp' starting page</title>
+    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -18,13 +24,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
   </head>
   
   <body>
-    <form action="com_doAddJob.jsp" method="post"  >
-    <h2>公司编号：</h2><input type="text" name="comId">  <br>
-    <h2>请输入你要删除的职位：</h2><input type="text" name="jobId">  <br>
-    <input type="submit" value="提交信息">
-    </form> <br>
+    <%
+		request.setCharacterEncoding("utf-8");
+	%>
+	
+	<%
+		boolean flag = false;
+		int comId = Integer.parseInt(request.getParameter("comId"));
+		int jobId = Integer.parseInt(request.getParameter("jobId"));
+		try {
+			flag = ComDaoFactory.getIComDaoInstance().doDeleteJob(comId,jobId);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(flag ==true){
+			out.print("删除成功！");
+		}
+		else{
+			out.print("删除失败！");
+		}
+		
+	%>
   </body>
 </html>
