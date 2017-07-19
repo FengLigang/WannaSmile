@@ -71,8 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </head>
   
   <body>
-<<<<<<< HEAD
-=======
+
     <!--start-header-->
 	<div class="header" id="home">
 		<div class="container">
@@ -607,6 +606,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--End-footer-->			
->>>>>>> be6cadb54ea93f88b17d0d9e1c2dc345d2a669f1
+
   </body>
 </html>
