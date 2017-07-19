@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nuaa.dao.IStuDao;
+import edu.nuaa.factory.JobDaoFactory;
+import edu.nuaa.factory.NoDaoFactory;
+import edu.nuaa.factory.ResumeDaoFactory;
+import edu.nuaa.factory.SkiDaoFactory;
+import edu.nuaa.factory.StuDaoFactory;
+import edu.nuaa.vo.Job;
+import edu.nuaa.vo.Resume;
+import edu.nuaa.vo.SkillTable;
 import edu.nuaa.vo.Student;
 
 public class StuDaoImpl implements IStuDao{
@@ -60,43 +68,7 @@ public class StuDaoImpl implements IStuDao{
 
 	@Override
 	public boolean doChange(Student stu) throws Exception {
-//		boolean flag = false;
-//		int stuId = stu.getStuId();
-//		int changestuAge = stu.getStuAge();
-//		int changestuTel = stu.getStuTel();
-//		int changestuResumeId = stu.getStuResumeId();
-//		String changestuPsw = stu.getStuPsw();
-//		String changestuName = stu.getStuName();
-//		String changestuEdu = stu.getStuEdu();
-//		String changestuSex = stu.getStuSex();
-//		String changestuEmail = stu.getStuEmail();
-//		String changestuIntroduce = stu.getStuIntroduce();
-//		String changestuExperience = stu.getStuExperience();
-//		String changestuFocus = stu.getStuFocus();
-//		String changestuRecommend = stu.getStuRecommend();
-//		String changestuSkill = stu.getStuSkill();
-//		String changestuSkillLab = stu.getStuSkillLab();
-//		System.out.println(stuId+"******************************");
-//		String sql = "update stu set stuAge = ?,stuTel = ?,stuResumeId = ?,stuPsw = ?,stuName = ?,stuEdu = ?,stuSex = ?,stuEmail = ?,stuIntroduce = ?,stuExperience = ?,stuFocus = ?,stuRecommend = ?,stuSkill =　?,stuSkillLab = ? where stuId = ?";
-//
-//		this.ps = this.conn.prepareStatement(sql);
-//		//		this.ps.setInt(1, changestuId);
-//		this.ps.setInt(1, changestuAge);
-//		this.ps.setInt(2, changestuTel);
-//		this.ps.setInt(3, changestuResumeId);
-//		this.ps.setString(4, changestuPsw);
-//		this.ps.setString(5, changestuName);
-//		this.ps.setString(6, changestuEdu);
-//		this.ps.setString(7, changestuSex);
-//		this.ps.setString(8, changestuEmail);
-//		this.ps.setString(9, changestuIntroduce);
-//		this.ps.setString(10, changestuExperience);
-//		this.ps.setString(11, changestuFocus);
-//		this.ps.setString(12, changestuRecommend);
-//		this.ps.setString(13, changestuSkill);
-//		this.ps.setString(14, changestuSkillLab);
-//		this.ps.setInt(15, stuId);
-		
+
 		boolean flag = false;
 		int stuId = stu.getStuId();
 		int changestuAge = stu.getStuAge();
@@ -198,5 +170,92 @@ public class StuDaoImpl implements IStuDao{
 			all.add(stu);
 		}
 		return all;
+	}
+	
+	
+	@Override
+	public boolean doSaveFocusJob(int stuId, int jobId) throws Exception {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		Student student = new Student();
+		student = StuDaoFactory.getIstuDaoInstance().doFindById(stuId);
+		String stufocus = student.getStuFocus();
+		if(student.getStuFocus() == null){
+			stufocus = "_";
+		}
+		stufocus = stufocus + jobId + "_";
+		String sql = "update stu set stuFocus=? where stuId= ?";
+		this.ps = this.conn.prepareStatement(sql);
+		this.ps.setString(1, stufocus);
+		this.ps.setInt(2, stuId);
+		if(this.ps.executeUpdate() > 0){
+			flag = true;
+		}
+		this.ps.close();
+		return flag;
+	}
+	
+	
+	@Override
+	public List<Integer> doWatchFocusJob(int stuId) throws Exception {
+		Student student = new Student();
+		student = StuDaoFactory.getIstuDaoInstance().doFindById(stuId);		
+		String stufocus = student.getStuFocus();
+		String []stufocus2 = stufocus.split("_");
+
+		List<Integer> focusjob = new ArrayList<Integer>();
+		System.out.println(stufocus2.length);//3
+		for(int i=1;i<stufocus2.length;i++){
+			focusjob.add(Integer.parseInt(stufocus2[i]));
+		}
+		return focusjob;
+	}
+	
+	
+	@Override
+	public boolean doSetSkiLab(int stuId) throws Exception {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		Student student = new Student();
+		student = StuDaoFactory.getIstuDaoInstance().doFindById(stuId);
+		String getstuskill;
+			
+		SkillTable skilltable = new SkillTable();
+		String result = "_"; //存放最后关键字和“_”连接完成的最终存放在skillLab中的字符串
+		String s3 = null;
+		int s1 = 0;
+		int s2 = 0;
+		for(int skiId = 1 ; skiId <= 10 ; skiId++){
+			getstuskill = student.getStuSkill(); //学生的skill描述
+			skilltable = SkiDaoFactory.getISkiDaoInstance().doFindById(skiId);//skill表中的一行，skiId使得一行一行遍历
+			String skiname = skilltable.getSkiName(); //获取这一行的存放的skill的name
+			s1 = getstuskill.indexOf(skiname);//关键字的首index
+			s2 = s1 + skiname.length();		  //关键字的尾index
+			if(s1 == -1){					  //找不到这个关键字的时候，s1默认会被置为-1，所以这里要continue,否则会exception；
+				continue;
+			}
+			s3 = getstuskill.substring(s1,s2);
+			s3 += "_";
+			result = result + s3;
+		}
+		System.out.println(result);
+		String sql = "update stu set stuSkillLab=? where stuId= ?";
+		this.ps = this.conn.prepareStatement(sql);
+		this.ps.setString(1, result);
+		this.ps.setInt(2, student.getStuId());
+		System.out.println(result);
+		
+		if(this.ps.executeUpdate() > 0){
+			flag = true;
+		}
+		return flag;
+	}
+	
+	@Override
+	public Resume doGetResume(int stuId) throws Exception {
+		// TODO Auto-generated method stub
+		Resume resume = new Resume();
+		resume = ResumeDaoFactory.getIResumeDaoInstance().findById(stuId);
+		return resume;
 	}
 }
